@@ -2,7 +2,7 @@
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "./dialog";
 
-const Modal = ({ title, description, isOpen, onClose, children }) => {
+export const Modal = ({ title, description, isOpen, onClose, children }) => {
   const onChange = (open) => {
     if (!open) {
       onClose();
