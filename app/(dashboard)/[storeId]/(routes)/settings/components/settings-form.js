@@ -29,7 +29,13 @@ export const SettingsForm = ({ initialData }) => {
     <>
       <div className="flex items-center justify-between">
         <Heading title="Settings" description="Manage store prefernces" />
-        <Button variant="destructive" size="sm" onClick={() => {}}>
+        <Button
+          disabled={loading}
+          variant="destructive"
+          size="sm"
+          onClick={() => {
+            setOpen(true);
+          }}>
           <Trash className="h-4 w-4"></Trash>
         </Button>
       </div>
