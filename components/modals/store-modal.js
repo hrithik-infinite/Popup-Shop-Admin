@@ -30,10 +30,10 @@ export const StoreModal = () => {
       setLoading(true);
 
       const response = await axios.post("/api/stores", values);
-      toast.success("Store Created!")
+      window.location.assign(`/${response.data.id}`); //reactr router will not refresh, thats why use window.location
       console.log(response.data);
     } catch (error) {
-      toast.error("something Went Wrong");
+      toast.error("Something Went Wrong");
     } finally {
       setLoading(false);
     }
