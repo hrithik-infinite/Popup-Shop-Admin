@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { AlertModal } from "@/components/modals/alert-modal";
+import { ApiAlert } from "@/components/ui/api-alert";
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -93,6 +94,7 @@ export const SettingsForm = ({ initialData }) => {
         </form>
       </Form>
       <Separator />
+      <ApiAlert title="test" description="tasdfdsdfdsdsesc"></ApiAlert>
     </>
   );
 };
