@@ -23,6 +23,7 @@
     "cmdk": "^0.2.0",
     "lucide-react": "^0.279.0",
     "next": "latest",
+    "next-cloudinary": "^4.23.1",
     "react": "latest",
     "react-dom": "latest",
     "react-hook-form": "^7.47.0",
