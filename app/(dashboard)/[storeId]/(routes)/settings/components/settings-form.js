@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
+import { AlertModal } from "@/components/modals/alert-modal";
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -32,7 +33,7 @@ export const SettingsForm = ({ initialData }) => {
       setLoading(true);
       await axios.patch(`/api/stores/${params.storeId}`, data);
       router.refresh();
-      toast.success("Store Updated!")
+      toast.success("Store Updated!");
     } catch (error) {
       toast.error("Something Went Wrong!");
     } finally {
@@ -41,6 +42,7 @@ export const SettingsForm = ({ initialData }) => {
   };
   return (
     <>
+      <AlertModal isOpen={open} onClose={() => setOpen(false)} onConfirm={() => {}} loading={loading} />
       <div className="flex items-center justify-between">
         <Heading title="Settings" description="Manage store prefernces" />
         <Button
