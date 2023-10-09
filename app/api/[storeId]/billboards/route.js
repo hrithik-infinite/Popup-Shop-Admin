@@ -30,7 +30,7 @@ export async function POST(req, { params }) {
     if (!storeByUserId) {
       return new NextResponse("Unauthorized", { status: 403 });
     }
-    const billboard = await prismadb.billboard.create({
+    const billboard = await prismadb.billBoard.create({
       data: {
         label,
         imageUrl,
@@ -49,7 +49,7 @@ export async function GET({ params }) {
       return new NextResponse("StoreId is Required", { status: 400 });
     }
 
-    const billboards = await prismadb.billboard.findMany({
+    const billboards = await prismadb.billBoard.findMany({
       data: {
         storeId: params.storeId,
       },
