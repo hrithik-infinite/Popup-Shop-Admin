@@ -1,5 +1,5 @@
 "use client";
-
+import { CellAction } from "./cell-action";
 export const columns = [
   {
     accessorKey: "label",
@@ -8,5 +8,10 @@ export const columns = [
   {
     accessorKey: "createdAt",
     header: "Date",
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => <CellAction data={row.original} />,
+    header: "Action",
   },
 ];
