@@ -23,7 +23,6 @@ export const CellAction = ({ data }) => {
       setLoading(true);
       await axios.delete(`/api/${params.storeId}/billboards/${data.id}`);
       router.refresh();
-      router.push("/");
       toast.success("BillBoard Deleted!");
     } catch (error) {
       toast.error("Make sure you remove all categories using this billboard first. ");
