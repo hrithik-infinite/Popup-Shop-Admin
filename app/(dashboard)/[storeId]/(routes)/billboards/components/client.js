@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { Plus, Router } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { columns } from "./columns";
+import { ApiList } from "@/components/ui/api-list";
 
 export const BillBoardClient = ({ data }) => {
   const router = useRouter();
@@ -23,6 +24,9 @@ export const BillBoardClient = ({ data }) => {
       </div>
       <Separator />
       <DataTable columns={columns} data={data} searchKey="label"></DataTable>
+      <Heading title="API" description="API calls for BillBoards"></Heading>
+      <Separator />
+      <ApiList entityName="billboards" entityIdName="billboardId" />
     </>
   );
 };
