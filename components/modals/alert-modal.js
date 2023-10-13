@@ -15,7 +15,12 @@ export const AlertModal = ({ isOpen, onClose, onConfirm, loading }) => {
   }
 
   return (
-    <Modal title="Are you sure?" description="This action cannot be undone." isOpen={isOpen} onClose={onClose}>
+    <Modal
+      title="Are you sure?"
+      description="This action cannot be undone."
+      isOpen={isOpen}
+      onClose={onClose}
+    >
       <div className="pt-6 space-x-2 flex items-center justify-end w-full">
         <Button disabled={loading} variant="outline" onClick={onClose}>
           Cancel

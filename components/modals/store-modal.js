@@ -4,7 +4,14 @@ import { useStoreModal } from "@/hooks/use-store-modal";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Modal } from "../ui/Modal";
 import { useForm } from "react-hook-form";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useState } from "react";
@@ -40,7 +47,12 @@ export const StoreModal = () => {
   };
 
   return (
-    <Modal title="Create Store" description="Add a new Category to manage product and categories" isOpen={storeModal.isOpen} onClose={storeModal.onClose}>
+    <Modal
+      title="Create Store"
+      description="Add a new Category to manage product and categories"
+      isOpen={storeModal.isOpen}
+      onClose={storeModal.onClose}
+    >
       <div>
         <div className="space-y-4 py-2 pb-4">
           <Form {...form}>
@@ -52,14 +64,22 @@ export const StoreModal = () => {
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input disabled={loading} placeholder="E-commerce" {...field} />
+                      <Input
+                        disabled={loading}
+                        placeholder="E-commerce"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
               <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-                <Button disabled={loading} variant="outline" onClick={storeModal.onClose}>
+                <Button
+                  disabled={loading}
+                  variant="outline"
+                  onClick={storeModal.onClose}
+                >
                   Cancel
                 </Button>
                 <Button disabled={loading} type="submit">

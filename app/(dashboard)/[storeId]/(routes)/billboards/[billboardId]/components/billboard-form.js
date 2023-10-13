@@ -7,7 +7,14 @@ import { Separator } from "@/components/ui/separator";
 import { Trash } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -41,7 +48,10 @@ export const BillBoardsForm = ({ initialData }) => {
     try {
       setLoading(true);
       if (initialData) {
-        await axios.patch(`/api/${params.storeId}/billboards/${params.billboardId}`, data);
+        await axios.patch(
+          `/api/${params.storeId}/billboards/${params.billboardId}`,
+          data,
+        );
       } else {
         await axios.post(`/api/${params.storeId}/billboards`, data);
       }
@@ -57,12 +67,16 @@ export const BillBoardsForm = ({ initialData }) => {
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`);
+      await axios.delete(
+        `/api/${params.storeId}/billboards/${params.billboardId}`,
+      );
       router.refresh();
       router.push(`/${params.storeId}/billboards`);
       toast.success("BillBoard Deleted!");
     } catch (error) {
-      toast.error("Make sure you remove all categories using this billboard first. ");
+      toast.error(
+        "Make sure you remove all categories using this billboard first. ",
+      );
     } finally {
       setLoading(false);
       setOpen(false);
@@ -70,7 +84,12 @@ export const BillBoardsForm = ({ initialData }) => {
   };
   return (
     <>
-      <AlertModal isOpen={open} onClose={() => setOpen(false)} onConfirm={onDelete} loading={loading} />
+      <AlertModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        onConfirm={onDelete}
+        loading={loading}
+      />
       <div className="flex items-center justify-between">
         <Heading title={title} description={description} />
         {initialData && (
@@ -80,14 +99,18 @@ export const BillBoardsForm = ({ initialData }) => {
             size="sm"
             onClick={() => {
               setOpen(true);
-            }}>
+            }}
+          >
             <Trash className="h-4 w-4"></Trash>
           </Button>
         )}
       </div>
       <Separator />
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-8 w-full"
+        >
           <FormField
             control={form.control}
             name="imageUrl"
@@ -95,7 +118,12 @@ export const BillBoardsForm = ({ initialData }) => {
               <FormItem>
                 <FormLabel>Background Image</FormLabel>
                 <FormControl>
-                  <ImageUpload value={field.value ? [field.value] : []} disabled={loading} onChange={(url) => field.onChange(url)} onRemove={() => field.onChange("")} />
+                  <ImageUpload
+                    value={field.value ? [field.value] : []}
+                    disabled={loading}
+                    onChange={(url) => field.onChange(url)}
+                    onRemove={() => field.onChange("")}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -109,7 +137,11 @@ export const BillBoardsForm = ({ initialData }) => {
                 <FormItem>
                   <FormLabel>Label</FormLabel>
                   <FormControl>
-                    <Input disabled={loading} placeholder="BillBoard Label" {...field} />
+                    <Input
+                      disabled={loading}
+                      placeholder="BillBoard Label"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
