@@ -9,29 +9,24 @@ import { useParams, useRouter } from "next/navigation";
 import { columns } from "./columns";
 import { ApiList } from "@/components/ui/api-list";
 
-export const BillBoardClient = ({ data }) => {
+export const SizeClient = ({ data }) => {
   const router = useRouter();
   const params = useParams();
 
   return (
     <>
       <div className="flex items-center justify-between">
-        <Heading
-          title={`BillBoards ${data.length}`}
-          description="Manage billborads for your store"
-        />
-        <Button
-          onClick={() => router.push(`/${params.storeId}/billboards/new`)}
-        >
+        <Heading title={`Sizes ${data.length}`} description="Manage Sizes for your store" />
+        <Button onClick={() => router.push(`/${params.storeId}/sizes/new`)}>
           <Plus className="mr-2 h-4 w-4" />
           Add New
         </Button>
       </div>
       <Separator />
-      <DataTable columns={columns} data={data} searchKey="label"></DataTable>
-      <Heading title="API" description="API calls for BillBoards"></Heading>
+      <DataTable columns={columns} data={data} searchKey="name"></DataTable>
+      <Heading title="API" description="API calls for Sizes"></Heading>
       <Separator />
-      <ApiList entityName="billboards" entityIdName="billboardId" />
+      <ApiList entityName="sizes" entityIdName="sizeId" />
     </>
   );
 };

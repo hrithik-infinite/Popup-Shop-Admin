@@ -1,13 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
@@ -22,18 +16,16 @@ export const CellAction = ({ data }) => {
   const [loading, setLoading] = useState(false);
   const onCopy = (id) => {
     navigator.clipboard.writeText(id);
-    toast.success("BillBoard ID copied!");
+    toast.success("Size ID copied!");
   };
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.storeId}/billboards/${data.id}`);
+      await axios.delete(`/api/${params.storeId}/sizes/${data.id}`);
       router.refresh();
-      toast.success("BillBoard Deleted!");
+      toast.success("Size Deleted!");
     } catch (error) {
-      toast.error(
-        "Make sure you remove all categories using this billboard first. ",
-      );
+      toast.error("Make sure you remove all products using this size first. ");
     } finally {
       setLoading(false);
       setOpen(false);
@@ -41,12 +33,7 @@ export const CellAction = ({ data }) => {
   };
   return (
     <>
-      <AlertModal
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        onConfirm={onDelete}
-        loading={loading}
-      />
+      <AlertModal isOpen={open} onClose={() => setOpen(false)} onConfirm={onDelete} loading={loading} />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="h-8 w-8 p-0">
@@ -56,11 +43,7 @@ export const CellAction = ({ data }) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent aligh="end">
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem
-            onClick={() =>
-              router.push(`/${params.storeId}/billboards/${data.id}`)
-            }
-          >
+          <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/sizes/${data.id}`)}>
             <Edit className="mr-2 h-4 w-4" />
             Update
           </DropdownMenuItem>
