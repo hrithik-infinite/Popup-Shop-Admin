@@ -15,17 +15,19 @@ import { useParams, useRouter } from "next/navigation";
 import { AlertModal } from "@/components/modals/alert-modal";
 const formSchema = z.object({
   name: z.string().min(1),
-  value: z.string().min(1),
+  value: z.string().min(4).regex(/^#/, {
+    message: "String must be valid hex code",
+  }),
 });
 
-export const SizeForm = ({ initialData }) => {
+export const ColorForm = ({ initialData }) => {
   const params = useParams();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const title = initialData ? "Edit Size" : "Create Size";
-  const description = initialData ? "Edit a Size" : "Add a Size";
-  const toastMessage = initialData ? "Size Updated" : "Size Created";
+  const title = initialData ? "Edit Color" : "Create Color";
+  const description = initialData ? "Edit a Color" : "Add a Color";
+  const toastMessage = initialData ? "Color Updated" : "Color Created";
   const action = initialData ? "Save Changes" : "Create";
 
   const form = useForm({
@@ -40,12 +42,12 @@ export const SizeForm = ({ initialData }) => {
     try {
       setLoading(true);
       if (initialData) {
-        await axios.patch(`/api/${params.storeId}/sizes/${params.sizeId}`, data);
+        await axios.patch(`/api/${params.storeId}/colors/${params.colorId}`, data);
       } else {
-        await axios.post(`/api/${params.storeId}/sizes`, data);
+        await axios.post(`/api/${params.storeId}/colors`, data);
       }
       router.refresh();
-      router.push(`/${params.storeId}/sizes`);
+      router.push(`/${params.storeId}/colors`);
       toast.success(toastMessage);
     } catch (error) {
       toast.error("Something Went Wrong!");
@@ -56,10 +58,10 @@ export const SizeForm = ({ initialData }) => {
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.storeId}/sizes/${params.sizeId}`);
+      await axios.delete(`/api/${params.storeId}/colors/${params.colorId}`);
       router.refresh();
-      router.push(`/${params.storeId}/sizes`);
-      toast.success("Size Deleted!");
+      router.push(`/${params.storeId}/colors`);
+      toast.success("Color Deleted!");
     } catch (error) {
       toast.error("Make sure you remove all products using this size first. ");
     } finally {
@@ -95,7 +97,7 @@ export const SizeForm = ({ initialData }) => {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input disabled={loading} placeholder="Size Name" {...field} />
+                    <Input disabled={loading} placeholder="Color Name" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -108,7 +110,10 @@ export const SizeForm = ({ initialData }) => {
                 <FormItem>
                   <FormLabel>Value</FormLabel>
                   <FormControl>
-                    <Input disabled={loading} placeholder="Size Value" {...field} />
+                    <div className="flex items-center gap-x-4">
+                      <Input disabled={loading} placeholder="Color Value" {...field} />
+                      <div className="border p-4 rounded-full" style={{ backgroundColor: field.value }} />
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

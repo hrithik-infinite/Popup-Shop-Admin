@@ -16,14 +16,14 @@ export const CellAction = ({ data }) => {
   const [loading, setLoading] = useState(false);
   const onCopy = (id) => {
     navigator.clipboard.writeText(id);
-    toast.success("Size ID copied!");
+    toast.success("Color ID copied!");
   };
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.storeId}/sizes/${data.id}`);
+      await axios.delete(`/api/${params.storeId}/colors/${data.id}`);
       router.refresh();
-      toast.success("Size Deleted!");
+      toast.success("Color Deleted!");
     } catch (error) {
       toast.error("Make sure you remove all products using this size first. ");
     } finally {
@@ -43,7 +43,7 @@ export const CellAction = ({ data }) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent aligh="end">
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/sizes/${data.id}`)}>
+          <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/colors/${data.id}`)}>
             <Edit className="mr-2 h-4 w-4" />
             Update
           </DropdownMenuItem>

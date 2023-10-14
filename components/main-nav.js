@@ -28,6 +28,11 @@ export function MainNav({ className, ...props }) {
       active: pathName === `/${params.storeId}/sizes`,
     },
     {
+      href: `/${params.storeId}/colors`,
+      label: "Colors",
+      active: pathName === `/${params.storeId}/colors`,
+    },
+    {
       href: `/${params.storeId}/settings`,
       label: "Settings",
       active: pathName === `/${params.storeId}/settings`,
