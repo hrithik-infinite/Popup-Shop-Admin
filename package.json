@@ -42,7 +42,7 @@
     "eslint": "latest",
     "eslint-config-next": "latest",
     "postcss": "latest",
-    "prisma": "^5.4.1",
+    "prisma": "^5.4.2",
     "tailwindcss": "latest"
   }
 }
