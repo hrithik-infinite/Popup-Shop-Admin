@@ -82,7 +82,7 @@ export const ProductFrom = ({ initialData, categories, sizes, colors }) => {
       router.push(`/${params.storeId}/products`);
       toast.success("Product Deleted!");
     } catch (error) {
-      toast.error("Make sure you remove all categories using this billboard first. ");
+      toast.error("Something went wrong");
     } finally {
       setLoading(false);
       setOpen(false);
