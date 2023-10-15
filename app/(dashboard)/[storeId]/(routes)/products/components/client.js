@@ -28,7 +28,7 @@ export const ProductClient = ({ data }) => {
         </Button>
       </div>
       <Separator />
-      <DataTable columns={columns} data={data} searchKey="label"></DataTable>
+      <DataTable columns={columns} data={data} searchKey="name"></DataTable>
       <Heading title="API" description="API calls for Products"></Heading>
       <Separator />
       <ApiList entityName="products" entityIdName="productId" />
