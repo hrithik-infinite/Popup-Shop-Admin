@@ -39,4 +39,9 @@ export const columns = [
     accessorKey: "createdAt",
     header: "Date",
   },
+  {
+    id: "actions",
+    cell: ({ row }) => <CellAction data={row.original} />,
+    header: "Action",
+  },
 ];
