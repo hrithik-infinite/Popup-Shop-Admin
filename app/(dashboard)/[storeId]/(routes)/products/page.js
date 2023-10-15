@@ -1,27 +1,39 @@
-import { BillBoardClient } from "./components/client";
+import { ProductClient } from "./components/client";
 import prismadb from "@/lib/prismadb";
 import { format } from "date-fns";
-const BillBoardsPage = async ({ params }) => {
-  const billboards = await prismadb.billBoard.findMany({
+import { formatter } from "@/lib/utils";
+const ProductsPage = async ({ params }) => {
+  const products = await prismadb.product.findMany({
     where: {
       storeId: params.storeId,
+    },
+    include: {
+      category: true,
+      size: true,
+      color: true,
     },
     orderBy: {
       createdAt: "desc",
     },
   });
-  const formattedBillboard = billboards.map((item) => ({
+  const formattedProduct = products.map((item) => ({
     id: item.id,
-    label: item.label,
+    name: item.name,
+    isFeatured: item.isFeatured,
+    isArchived: item.isArchived,
+    price: formatter.format(item.price),
+    category: item.category.name,
+    size: item.category.name,
+    color: item.color.value,
     createdAt: format(item.createdAt, "MMMM do, yyyy"),
   }));
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <BillBoardClient data={formattedBillboard} />
+        <ProductClient data={formattedProduct} />
       </div>
     </div>
   );
 };
 
-export default BillBoardsPage;
+export default ProductsPage;

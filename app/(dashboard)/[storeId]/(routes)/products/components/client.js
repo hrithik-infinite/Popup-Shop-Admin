@@ -9,7 +9,7 @@ import { useParams, useRouter } from "next/navigation";
 import { columns } from "./columns";
 import { ApiList } from "@/components/ui/api-list";
 
-export const BillBoardClient = ({ data }) => {
+export const ProductClient = ({ data }) => {
   const router = useRouter();
   const params = useParams();
 
@@ -17,11 +17,11 @@ export const BillBoardClient = ({ data }) => {
     <>
       <div className="flex items-center justify-between">
         <Heading
-          title={`BillBoards ${data.length}`}
-          description="Manage billborads for your store"
+          title={`Products ${data.length}`}
+          description="Manage products for your store"
         />
         <Button
-          onClick={() => router.push(`/${params.storeId}/billboards/new`)}
+          onClick={() => router.push(`/${params.storeId}/products/new`)}
         >
           <Plus className="mr-2 h-4 w-4" />
           Add New
@@ -29,9 +29,9 @@ export const BillBoardClient = ({ data }) => {
       </div>
       <Separator />
       <DataTable columns={columns} data={data} searchKey="label"></DataTable>
-      <Heading title="API" description="API calls for BillBoards"></Heading>
+      <Heading title="API" description="API calls for Products"></Heading>
       <Separator />
-      <ApiList entityName="billboards" entityIdName="billboardId" />
+      <ApiList entityName="products" entityIdName="productId" />
     </>
   );
 };
