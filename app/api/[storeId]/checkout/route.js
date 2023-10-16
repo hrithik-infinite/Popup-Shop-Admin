@@ -4,7 +4,7 @@ import { stripe } from "@/lib/stripe";
 import prismadb from "@/lib/prismadb";
 
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "https://popup-shop-store.vercel.app",
+  "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
@@ -15,7 +15,6 @@ export async function OPTIONS() {
 
 export async function POST(req, { params }) {
   const { productIds } = await req.json();
-
   if (!productIds || productIds.length === 0) {
     return new NextResponse("Product ids are required", { status: 400 });
   }
@@ -27,7 +26,6 @@ export async function POST(req, { params }) {
       },
     },
   });
-
   const line_items = [];
 
   products.forEach((product) => {
@@ -73,10 +71,5 @@ export async function POST(req, { params }) {
     },
   });
 
-  return NextResponse.json(
-    { url: session.url },
-    {
-      headers: corsHeaders,
-    }
-  );
+  return NextResponse.json({ url: session.url }, { headers: corsHeaders });
 }
