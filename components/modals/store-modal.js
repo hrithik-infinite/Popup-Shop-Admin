@@ -2,7 +2,7 @@
 import * as z from "zod";
 import { useStoreModal } from "@/hooks/use-store-modal";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Modal } from "../ui/Modal";
+import { Modal } from "../ui/modal";
 import { useForm } from "react-hook-form";
 import {
   Form,
